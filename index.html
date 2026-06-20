@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="استمارة ما قبل جلسة التدريب — اكتشف نفسك واستعد لرحلة التغيير" />
+  <title>استمارة التدريب | Coaching Intake</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-shapes" aria-hidden="true">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+
+  <main class="app">
+    <header class="hero">
+      <div class="hero-badge">✦ جلسات تدريب فردية</div>
+      <h1>استمارة ما قبل الجلسة</h1>
+      <p class="hero-sub">
+        خذ بضع دقائق لتعبئة هذه الاستمارة. ستساعدني على فهمك بعمق
+        وتخصيص جلستنا لتحقيق أقصى فائدة لك.
+      </p>
+      <div class="progress-wrap">
+        <div class="progress-meta">
+          <span id="stepLabel">الخطوة 1 من 8</span>
+          <span id="progressPercent">13%</span>
+        </div>
+        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="13">
+          <div class="progress-fill" id="progressFill" style="width: 13%"></div>
+        </div>
+      </div>
+
+      <div class="draft-banner hidden" id="draftBanner" role="alert">
+        <p id="draftBannerText">لديك مسودة محفوظة. هل تريد متابعة التعبئة من حيث توقفت؟</p>
+        <div class="draft-banner-actions">
+          <button type="button" class="btn btn-primary btn-sm" id="resumeDraftBtn">متابعة التعبئة</button>
+          <button type="button" class="btn btn-ghost btn-sm" id="discardDraftBtn">البدء من جديد</button>
+        </div>
+      </div>
+    </header>
+
+    <form id="coachingForm" novalidate>
+      <!-- Étape 1 : Informations de base -->
+      <section class="step active" data-step="1">
+        <div class="step-header">
+          <span class="step-icon">01</span>
+          <div>
+            <h2>معلومات أساسية</h2>
+            <p>لنتواصل معك ونؤكد موعد جلستك</p>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="firstName">الاسم <span class="req">*</span></label>
+            <input type="text" id="firstName" name="firstName" required placeholder="اسمك الأول" />
+          </div>
+          <div class="field">
+            <label for="lastName">اللقب <span class="req">*</span></label>
+            <input type="text" id="lastName" name="lastName" required placeholder="اسم العائلة" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">البريد الإلكتروني <span class="req">*</span></label>
+          <input type="email" id="email" name="email" required placeholder="example@email.com" dir="ltr" />
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="age">العمر</label>
+            <input type="number" id="age" name="age" min="16" max="99" placeholder="مثال: 32" />
+          </div>
+          <div class="field">
+            <label for="occupation">المهنة / مجال العمل</label>
+            <input type="text" id="occupation" name="occupation" placeholder="مثال: رائدة أعمال، طبيبة، طالبة..." />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="referral">كيف سمعت عني؟</label>
+          <select id="referral" name="referral">
+            <option value="">اختر...</option>
+            <option value="instagram">إنستغرام</option>
+            <option value="friend">توصية من صديق</option>
+            <option value="google">بحث على الإنترنت</option>
+            <option value="other">أخرى</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Étape 2 : Objectifs coaching -->
+      <section class="step" data-step="2">
+        <div class="step-header">
+          <span class="step-icon">02</span>
+          <div>
+            <h2>أهدافك من التدريب</h2>
+            <p>ما الذي تريد تحقيقه من هذه الرحلة؟</p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="clientExpectations">عندما تنتهي جلستنا، ماذا يجب أن تحصل عليه لتشعر أنها حقّقت ما جئت من أجله؟ <span class="req">*</span></label>
+          <p class="field-hint">حدّد توقعاتك بصدق — ماذا تريد أن تفهم، تكتشف، أو تتعلّمه من هذه التجربة؟</p>
+          <textarea id="clientExpectations" name="clientExpectations" required rows="3" placeholder="مثال: تحليل واضح لشخصيتي، فهم دوافعي وردود أفعالي، إجابات على أسئلة تشغل بالك، أدوات عملية، دعم واستماع..."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="motivation">ما الذي دفعك للتقدم على جلسة تدريب الآن؟ <span class="req">*</span></label>
+          <textarea id="motivation" name="motivation" required rows="3" placeholder="صف اللحظة أو الحدث الذي جعلك تقول: حان الوقت للتغيير"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="biggestChallenge">ما أكبر تحدٍ تواجهه في حياتك حالياً؟ <span class="req">*</span></label>
+          <textarea id="biggestChallenge" name="biggestChallenge" required rows="3" placeholder="في العمل، العلاقات، الثقة بالنفس، التوازن..."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="dreamOutcome">إذا نجحت جلستنا، كيف ستبدو حياتك بعد 3–6 أشهر؟ <span class="req">*</span></label>
+          <textarea id="dreamOutcome" name="dreamOutcome" required rows="3" placeholder="تخيّل النتيجة بأكبر قدر من التفصيل"></textarea>
+        </div>
+
+        <div class="field">
+          <label>هل سبق لك أن جربت التدريب أو العلاج النفسي؟</label>
+          <div class="radio-group">
+            <label class="radio-card"><input type="radio" name="previousCoaching" value="never" /><span>لا، هذه أول مرة</span></label>
+            <label class="radio-card"><input type="radio" name="previousCoaching" value="coaching" /><span>نعم، تدريب (coaching)</span></label>
+            <label class="radio-card"><input type="radio" name="previousCoaching" value="therapy" /><span>نعم، علاج نفسي</span></label>
+            <label class="radio-card"><input type="radio" name="previousCoaching" value="both" /><span>كلاهما</span></label>
+          </div>
+        </div>
+
+        <div class="question-block" id="positiveChangesBlock">
+          <p class="question-text">ما التغيّرات الإيجابية التي تتوقعها بعد فهم شخصيتك؟ <span class="req">*</span> (يمكن اختيار أكثر من واحد)</p>
+          <div class="checkbox-group">
+            <label class="checkbox-card"><input type="checkbox" name="positiveChanges" value="challenges" /><span>تعامل أفضل مع تحديات الحياة</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="positiveChanges" value="balance" /><span>تحقيق توازن صحي أفضل</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="positiveChanges" value="strengths" /><span>التعرّف على مميزات شخصيتك وتوظيفها بفعالية</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="positiveChanges" value="clarity" /><span>الخروج من حالة الضياع</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="positiveChanges" value="development" /><span>فهم شخصيتك يسهّل عملية تطويرها</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="positiveChanges" value="liberation" /><span>تحرير شخصيتك وتفكيك قيودها</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="positiveChanges" value="self_confidence" /><span>زيادة الثقة بالنفس</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="positiveChanges" value="relationships" /><span>تحسين علاقاتك مع الآخرين</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="positiveChanges" value="communication" /><span>تواصل أوضح وأكثر فعالية</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="positiveChanges" value="decisions" /><span>اتخاذ قرارات بثقة أكبر</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="positiveChanges" value="emotions" /><span>فهم وإدارة مشاعرك بشكل أفضل</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="positiveChanges" value="career" /><span>تطوير مسيرتك المهنية وفق شخصيتك</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="positiveChanges" value="boundaries" /><span>وضع حدود صحية مع الآخرين</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="positiveChanges" value="inner_peace" /><span>الشعور بسلام داخلي أكبر</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="positiveChanges" value="authenticity" /><span>العيش بأصالتك دون ارتداء قناع</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="positiveChanges" value="stress" /><span>التعامل مع الضغط والتوتر بشكل أفضل</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="positiveChanges" value="purpose" /><span>اكتشاف هدفك ومعنى حياتك</span></label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Étape 3 : MBTI-inspired -->
+      <section class="step" data-step="3">
+        <div class="step-header">
+          <span class="step-icon">03</span>
+          <div>
+            <h2>طاقتك وطريقة تفكيرك</h2>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <p class="question-text">بعد يوم مرهق، ما الذي يعيد إليك طاقتك حقاً؟</p>
+          <div class="scale-group" data-name="energySource">
+            <label class="scale-option"><input type="radio" name="energySource" value="introvert" required /><span class="scale-label">العزلة — وقت لوحدي للتفكير والراحة</span></label>
+            <label class="scale-option"><input type="radio" name="energySource" value="ambivert" /><span class="scale-label">مزيج — أحياناً لوحدي وأحياناً مع الآخرين</span></label>
+            <label class="scale-option"><input type="radio" name="energySource" value="extravert" /><span class="scale-label">التواصل — الحديث مع أشخاص أثق بهم</span></label>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <p class="question-text">عند اتخاذ قرار مهم، ما الذي يوجّهك أكثر؟</p>
+          <div class="scale-group" data-name="decisionStyle">
+            <label class="scale-option"><input type="radio" name="decisionStyle" value="logic" required /><span class="scale-label">المنطق والتحليل — الحقائق والنتائج</span></label>
+            <label class="scale-option"><input type="radio" name="decisionStyle" value="balanced" /><span class="scale-label">التوازن بين المنطق والمشاعر</span></label>
+            <label class="scale-option"><input type="radio" name="decisionStyle" value="values" /><span class="scale-label">القيم والمشاعر — ما يشعرني بالسلام</span></label>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <p class="question-text">كيف تفضل التعامل مع الخطط والمشاريع؟</p>
+          <div class="scale-group" data-name="structurePreference">
+            <label class="scale-option"><input type="radio" name="structurePreference" value="structured" required /><span class="scale-label">أحب الخطة الواضحة والمواعيد المحددة</span></label>
+            <label class="scale-option"><input type="radio" name="structurePreference" value="flexible" /><span class="scale-label">أفضل المرونة والتكيّف مع الظروف</span></label>
+            <label class="scale-option"><input type="radio" name="structurePreference" value="mixed" /><span class="scale-label">خطة عامة مع مساحة للارتجال</span></label>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <p class="question-text">عندما تتعلّم شيئاً جديداً، ما أسلوبك المفضل؟</p>
+          <div class="scale-group" data-name="learningStyle">
+            <label class="scale-option"><input type="radio" name="learningStyle" value="concrete" required /><span class="scale-label">أمثلة عملية وتجربة مباشرة</span></label>
+            <label class="scale-option"><input type="radio" name="learningStyle" value="conceptual" /><span class="scale-label">الأفكار والمعاني والروابط بين المفاهيم</span></label>
+            <label class="scale-option"><input type="radio" name="learningStyle" value="both" /><span class="scale-label">كلاهما حسب الموضوع</span></label>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <p class="question-text">هل أنت شخص صريح/ة وعفوي/ة؟</p>
+          <div class="radio-group">
+            <label class="radio-card"><input type="radio" name="frankSpontaneous" value="yes" required /><span>نعم</span></label>
+            <label class="radio-card"><input type="radio" name="frankSpontaneous" value="no" /><span>لا</span></label>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <p class="question-text">أي شكل تجد فيه راحة نفسية أكثر؟</p>
+          <div class="shape-group">
+            <label class="shape-card"><input type="radio" name="comfortShape" value="circle" required /><span class="shape-icon shape-circle" aria-hidden="true"></span><span>الدائرة</span></label>
+            <label class="shape-card"><input type="radio" name="comfortShape" value="square" /><span class="shape-icon shape-square" aria-hidden="true"></span><span>المربع</span></label>
+            <label class="shape-card"><input type="radio" name="comfortShape" value="triangle" /><span class="shape-icon shape-triangle" aria-hidden="true"></span><span>المثلث</span></label>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <p class="question-text">أين تجد راحة أكبر؟</p>
+          <div class="scale-group" data-name="actionVsAnalysis">
+            <label class="scale-option"><input type="radio" name="actionVsAnalysis" value="action" required /><span class="scale-label">في الإنجاز والعمل</span></label>
+            <label class="scale-option"><input type="radio" name="actionVsAnalysis" value="analysis" /><span class="scale-label">في التحليل والتفكير العميق</span></label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Étape 4 : Ennéagramme + Big Five -->
+      <section class="step" data-step="4">
+        <div class="step-header">
+          <span class="step-icon">04</span>
+          <div>
+            <h2>دوافعك العميقة</h2>
+          </div>
+        </div>
+
+        <div class="question-block" id="coreMotivationBlock">
+          <p class="question-text">ما الذي يحرّكك في أعماقك؟ <span class="req">*</span> (يمكن اختيار أكثر من واحد)</p>
+          <div class="checkbox-group">
+            <label class="checkbox-card"><input type="checkbox" name="coreMotivation" value="perfection" /><span>أن أكون صحيحاً/صحيحة وأفعل ما يجب</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="coreMotivation" value="love" /><span>أن أُحب وأُقدَّر من الآخرين</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="coreMotivation" value="success" /><span>أن أحقق النجاح وأكون محل تقدير</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="coreMotivation" value="authenticity" /><span>أن أكون فريداً/فريدة وأعيش بصدق</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="coreMotivation" value="knowledge" /><span>أن أفهم العالم بعمق</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="coreMotivation" value="security" /><span>أن أشعر بالأمان والاستقرار</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="coreMotivation" value="freedom" /><span>أن أحافظ على حريتي وفرحي</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="coreMotivation" value="power" /><span>أن أكون قوياً/قوية وأتحكم في حياتي</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="coreMotivation" value="peace" /><span>أن أحافظ على السلام والانسجام</span></label>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <p class="question-text">في أوقات الضغط، ما رد فعلك الأول؟</p>
+          <div class="scale-group" data-name="stressReaction">
+            <label class="scale-option"><input type="radio" name="stressReaction" value="control" required /><span class="scale-label">أحاول السيطرة على كل شيء</span></label>
+            <label class="scale-option"><input type="radio" name="stressReaction" value="withdraw" /><span class="scale-label">أنسحب وأتجنب المواجهة</span></label>
+            <label class="scale-option"><input type="radio" name="stressReaction" value="please" /><span class="scale-label">أحاول إرضاء الجميع</span></label>
+            <label class="scale-option"><input type="radio" name="stressReaction" value="attack" /><span class="scale-label">أصبح حاداً أو دفاعياً</span></label>
+            <label class="scale-option"><input type="radio" name="stressReaction" value="numb" /><span class="scale-label">أشعر بالتخدير أو الفراغ</span></label>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <p class="question-text">كيف تصف علاقتك بالمال؟ <span class="req">*</span></p>
+          <div class="scale-group" data-name="moneyRelationship">
+            <label class="scale-option"><input type="radio" name="moneyRelationship" value="security" required /><span class="scale-label">مصدر أمان واستقرار</span></label>
+            <label class="scale-option"><input type="radio" name="moneyRelationship" value="freedom" /><span class="scale-label">وسيلة للحرية والاستقلال</span></label>
+            <label class="scale-option"><input type="radio" name="moneyRelationship" value="anxiety" /><span class="scale-label">سبب للقلق والتوتر</span></label>
+            <label class="scale-option"><input type="radio" name="moneyRelationship" value="ambition" /><span class="scale-label">أداة لتحقيق أهدافي وطموحاتي</span></label>
+            <label class="scale-option"><input type="radio" name="moneyRelationship" value="avoidance" /><span class="scale-label">موضوع أفضّل تجنّب التفكير فيه</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="moneyFirstFeeling">ما الشعور أو الفكرة الأولى التي تخطر ببالك عند التفكير في المال؟ <span class="req">*</span></label>
+          <p class="field-hint">لا توجد إجابة صحيحة أو خاطئة — أجب بصدق كما يتبادر إلى ذهنك.</p>
+          <textarea id="moneyFirstFeeling" name="moneyFirstFeeling" required rows="2" placeholder="مثال: الخوف من النقص، الشعور بالحرية، الضغط، الفخر، الحرج، الامتنان..."></textarea>
+        </div>
+
+        <div class="question-block">
+          <p class="question-text">أقيّم نفسي في هذه الصفات (1 = لا ينطبق عليّ، 5 = ينطبق جداً)</p>
+          <div class="likert-grid">
+            <div class="likert-item">
+              <span>أنا منفتح/ة على تجارب جديدة وأفكار مختلفة</span>
+              <div class="likert-scale" data-name="openness">
+                <label><input type="radio" name="openness" value="1" required /><span>1</span></label>
+                <label><input type="radio" name="openness" value="2" /><span>2</span></label>
+                <label><input type="radio" name="openness" value="3" /><span>3</span></label>
+                <label><input type="radio" name="openness" value="4" /><span>4</span></label>
+                <label><input type="radio" name="openness" value="5" /><span>5</span></label>
+              </div>
+            </div>
+            <div class="likert-item">
+              <span>أنا منظّم/ة، ملتزم/ة بالمواعيد والمسؤوليات</span>
+              <div class="likert-scale" data-name="conscientiousness">
+                <label><input type="radio" name="conscientiousness" value="1" required /><span>1</span></label>
+                <label><input type="radio" name="conscientiousness" value="2" /><span>2</span></label>
+                <label><input type="radio" name="conscientiousness" value="3" /><span>3</span></label>
+                <label><input type="radio" name="conscientiousness" value="4" /><span>4</span></label>
+                <label><input type="radio" name="conscientiousness" value="5" /><span>5</span></label>
+              </div>
+            </div>
+            <div class="likert-item">
+              <span>أستمتع بالتواصل الاجتماعي والتفاعل مع الناس</span>
+              <div class="likert-scale" data-name="extraversion">
+                <label><input type="radio" name="extraversion" value="1" required /><span>1</span></label>
+                <label><input type="radio" name="extraversion" value="2" /><span>2</span></label>
+                <label><input type="radio" name="extraversion" value="3" /><span>3</span></label>
+                <label><input type="radio" name="extraversion" value="4" /><span>4</span></label>
+                <label><input type="radio" name="extraversion" value="5" /><span>5</span></label>
+              </div>
+            </div>
+            <div class="likert-item">
+              <span>أهتم بمشاعر الآخرين وأسعى للتعاون</span>
+              <div class="likert-scale" data-name="agreeableness">
+                <label><input type="radio" name="agreeableness" value="1" required /><span>1</span></label>
+                <label><input type="radio" name="agreeableness" value="2" /><span>2</span></label>
+                <label><input type="radio" name="agreeableness" value="3" /><span>3</span></label>
+                <label><input type="radio" name="agreeableness" value="4" /><span>4</span></label>
+                <label><input type="radio" name="agreeableness" value="5" /><span>5</span></label>
+              </div>
+            </div>
+            <div class="likert-item">
+              <span>أتأثر بسهولة بالقلق أو المشاعر السلبية</span>
+              <div class="likert-scale" data-name="emotionalSensitivity">
+                <label><input type="radio" name="emotionalSensitivity" value="1" required /><span>1</span></label>
+                <label><input type="radio" name="emotionalSensitivity" value="2" /><span>2</span></label>
+                <label><input type="radio" name="emotionalSensitivity" value="3" /><span>3</span></label>
+                <label><input type="radio" name="emotionalSensitivity" value="4" /><span>4</span></label>
+                <label><input type="radio" name="emotionalSensitivity" value="5" /><span>5</span></label>
+              </div>
+            </div>
+            <div class="likert-item">
+              <span>أثق بنفسي وقدراتي حتى في المواقف الصعبة</span>
+              <div class="likert-scale" data-name="selfConfidence">
+                <label><input type="radio" name="selfConfidence" value="1" required /><span>1</span></label>
+                <label><input type="radio" name="selfConfidence" value="2" /><span>2</span></label>
+                <label><input type="radio" name="selfConfidence" value="3" /><span>3</span></label>
+                <label><input type="radio" name="selfConfidence" value="4" /><span>4</span></label>
+                <label><input type="radio" name="selfConfidence" value="5" /><span>5</span></label>
+              </div>
+            </div>
+            <div class="likert-item">
+              <span>أتكيّف بسرعة مع التغيّرات والمفاجآت</span>
+              <div class="likert-scale" data-name="adaptability">
+                <label><input type="radio" name="adaptability" value="1" required /><span>1</span></label>
+                <label><input type="radio" name="adaptability" value="2" /><span>2</span></label>
+                <label><input type="radio" name="adaptability" value="3" /><span>3</span></label>
+                <label><input type="radio" name="adaptability" value="4" /><span>4</span></label>
+                <label><input type="radio" name="adaptability" value="5" /><span>5</span></label>
+              </div>
+            </div>
+            <div class="likert-item">
+              <span>أتعافى بسرعة بعد الفشل أو الإخفاق</span>
+              <div class="likert-scale" data-name="resilience">
+                <label><input type="radio" name="resilience" value="1" required /><span>1</span></label>
+                <label><input type="radio" name="resilience" value="2" /><span>2</span></label>
+                <label><input type="radio" name="resilience" value="3" /><span>3</span></label>
+                <label><input type="radio" name="resilience" value="4" /><span>4</span></label>
+                <label><input type="radio" name="resilience" value="5" /><span>5</span></label>
+              </div>
+            </div>
+            <div class="likert-item">
+              <span>أثابر حتى أحقّق ما وضعته نصب عيني</span>
+              <div class="likert-scale" data-name="perseverance">
+                <label><input type="radio" name="perseverance" value="1" required /><span>1</span></label>
+                <label><input type="radio" name="perseverance" value="2" /><span>2</span></label>
+                <label><input type="radio" name="perseverance" value="3" /><span>3</span></label>
+                <label><input type="radio" name="perseverance" value="4" /><span>4</span></label>
+                <label><input type="radio" name="perseverance" value="5" /><span>5</span></label>
+              </div>
+            </div>
+            <div class="likert-item">
+              <span>أعبّر عن رأيي ومشاعري بوضوح دون تردّد</span>
+              <div class="likert-scale" data-name="assertiveness">
+                <label><input type="radio" name="assertiveness" value="1" required /><span>1</span></label>
+                <label><input type="radio" name="assertiveness" value="2" /><span>2</span></label>
+                <label><input type="radio" name="assertiveness" value="3" /><span>3</span></label>
+                <label><input type="radio" name="assertiveness" value="4" /><span>4</span></label>
+                <label><input type="radio" name="assertiveness" value="5" /><span>5</span></label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Étape 5 : DISC -->
+      <section class="step" data-step="5">
+        <div class="step-header">
+          <span class="step-icon">05</span>
+          <div>
+            <h2>أسلوبك في التواصل</h2>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <p class="question-text">في مجموعة عمل أو اجتماع، غالباً ما...</p>
+          <div class="scale-group" data-name="groupRole">
+            <label class="scale-option"><input type="radio" name="groupRole" value="leader" required /><span class="scale-label">أتولى القيادة وأتخذ القرارات بسرعة (D)</span></label>
+            <label class="scale-option"><input type="radio" name="groupRole" value="motivator" /><span class="scale-label">أحفّز الآخرين وأخلق أجواء إيجابية (I)</span></label>
+            <label class="scale-option"><input type="radio" name="groupRole" value="supporter" /><span class="scale-label">أستمع وأدعم وأحافظ على الانسجام (S)</span></label>
+            <label class="scale-option"><input type="radio" name="groupRole" value="analyst" /><span class="scale-label">أحلّل التفاصيل وأضمن الدقة (C)</span></label>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <p class="question-text">عندما يختلف معك شخص ما، ماذا تفعل؟</p>
+          <div class="scale-group" data-name="conflictStyle">
+            <label class="scale-option"><input type="radio" name="conflictStyle" value="direct" required /><span class="scale-label">أواجه مباشرة وأدافع عن موقفي</span></label>
+            <label class="scale-option"><input type="radio" name="conflictStyle" value="diplomatic" /><span class="scale-label">أبحث عن حل يرضي الجميع</span></label>
+            <label class="scale-option"><input type="radio" name="conflictStyle" value="avoid" /><span class="scale-label">أتجنب الصراع قدر الإمكان</span></label>
+            <label class="scale-option"><input type="radio" name="conflictStyle" value="logical" /><span class="scale-label">أقدّم الحجج والأدلة بهدوء</span></label>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <p class="question-text">ما أسلوب تواصلك المفضل؟</p>
+          <div class="scale-group" data-name="communicationStyle">
+            <label class="scale-option"><input type="radio" name="communicationStyle" value="brief" required /><span class="scale-label">مختصر ومباشر — إلى النقطة</span></label>
+            <label class="scale-option"><input type="radio" name="communicationStyle" value="expressive" /><span class="scale-label">معبّر وملهم — أحب القصص</span></label>
+            <label class="scale-option"><input type="radio" name="communicationStyle" value="warm" /><span class="scale-label">دافئ ومتعاطف — أستمع أكثر</span></label>
+            <label class="scale-option"><input type="radio" name="communicationStyle" value="precise" /><span class="scale-label">دقيق ومنظّم — أحب التفاصيل</span></label>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <p class="question-text">ما الذي يزعجك أكثر في الآخرين؟</p>
+          <div class="scale-group" data-name="petPeeve">
+            <label class="scale-option"><input type="radio" name="petPeeve" value="slow" required /><span class="scale-label">البطء وعدم اتخاذ القرار</span></label>
+            <label class="scale-option"><input type="radio" name="petPeeve" value="negative" /><span class="scale-label">السلبية وعدم الحماس</span></label>
+            <label class="scale-option"><input type="radio" name="petPeeve" value="instability" /><span class="scale-label">عدم الاستقرار والتغيير المفاجئ</span></label>
+            <label class="scale-option"><input type="radio" name="petPeeve" value="sloppy" /><span class="scale-label">الفوضى وعدم الدقة</span></label>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <p class="question-text">تفضّل الاستماع أم التحدّث؟</p>
+          <div class="scale-group" data-name="listenVsSpeak">
+            <label class="scale-option"><input type="radio" name="listenVsSpeak" value="listen" required /><span class="scale-label">أفضّل الاستماع</span></label>
+            <label class="scale-option"><input type="radio" name="listenVsSpeak" value="speak" /><span class="scale-label">أفضّل التحدّث</span></label>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <p class="question-text">إن كان عليك الاختيار بين الحرية والأمان، ماذا تختار؟</p>
+          <div class="scale-group" data-name="freedomVsSecurity">
+            <label class="scale-option"><input type="radio" name="freedomVsSecurity" value="freedom" required /><span class="scale-label">الحرية</span></label>
+            <label class="scale-option"><input type="radio" name="freedomVsSecurity" value="security" /><span class="scale-label">الأمان</span></label>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <p class="question-text">هل تجد سهولة في الخروج من منطقة الراحة؟</p>
+          <div class="radio-group">
+            <label class="radio-card"><input type="radio" name="comfortZone" value="yes" required /><span>نعم</span></label>
+            <label class="radio-card"><input type="radio" name="comfortZone" value="no" /><span>لا</span></label>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <p class="question-text">هل أنت شخص حذر/ة جداً؟</p>
+          <div class="radio-group">
+            <label class="radio-card"><input type="radio" name="veryCautious" value="yes" required /><span>نعم</span></label>
+            <label class="radio-card"><input type="radio" name="veryCautious" value="no" /><span>لا</span></label>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <p class="question-text">هل تأخذ المبادرة في أغلب الأحيان؟</p>
+          <div class="radio-group">
+            <label class="radio-card"><input type="radio" name="takesInitiative" value="yes" required /><span>نعم</span></label>
+            <label class="radio-card"><input type="radio" name="takesInitiative" value="no" /><span>لا</span></label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Étape 6 : Passion, forces et faiblesses -->
+      <section class="step" data-step="6">
+        <div class="step-header">
+          <span class="step-icon">06</span>
+          <div>
+            <h2>شغفك، نقاط قوتك وضعفك</h2>
+            <p>تعرّف على ذاتك — اختر ما ينطبق عليك وأضف بكلماتك</p>
+          </div>
+        </div>
+
+        <div class="question-block" id="passionsBlock">
+          <p class="question-text">ما الذي يشعل شغفك في الحياة؟ <span class="req">*</span> (يمكن اختيار أكثر من واحد)</p>
+          <div class="checkbox-group">
+            <label class="checkbox-card"><input type="checkbox" name="passions" value="creativity" /><span>الإبداع والفن</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="passions" value="helping" /><span>مساعدة الآخرين وخدمتهم</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="passions" value="learning" /><span>التعلّم والمعرفة</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="passions" value="leadership" /><span>القيادة والتأثير</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="passions" value="business" /><span>ريادة الأعمال والمشاريع</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="passions" value="relationships" /><span>العلاقات والتواصل</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="passions" value="spirituality" /><span>الروحانيات والبحث عن المعنى</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="passions" value="sport" /><span>الرياضة والعناية بالجسد</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="passionDetails">صف شغفك بكلماتك <span class="req">*</span></label>
+          <p class="field-hint">ما الذي تحب فعله ولا تشعر بمرور الوقت وأنت تفعله؟</p>
+          <textarea id="passionDetails" name="passionDetails" required rows="2" placeholder="مثال: الكتابة، التصوير، مساعدة الآخرين، السفر، الطبخ..."></textarea>
+        </div>
+
+        <div class="question-block" id="strengthTraitsBlock">
+          <p class="question-text">ما نقاط قوتك التي تميزك؟ <span class="req">*</span> (يمكن اختيار أكثر من واحد)</p>
+          <div class="checkbox-group">
+            <label class="checkbox-card"><input type="checkbox" name="strengthTraits" value="empathy" /><span>التعاطف وفهم الآخرين</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="strengthTraits" value="perseverance" /><span>المثابرة والإصرار</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="strengthTraits" value="creativity" /><span>الإبداع والخيال</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="strengthTraits" value="leadership" /><span>القيادة وتحفيز الفريق</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="strengthTraits" value="patience" /><span>الصبر والهدوء</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="strengthTraits" value="communication" /><span>التواصل والتعبير</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="strengthTraits" value="organization" /><span>التنظيم والدقة</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="strengthTraits" value="adaptability" /><span>المرونة والتكيّف</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="strengthTraits" value="honesty" /><span>الصدق والأصالة</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="strengthTraits" value="listening" /><span>الاستماع الجيد</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="strengthsDetails">ما نقاط قوتك التي ينساها الناس غالباً؟ <span class="req">*</span></label>
+          <textarea id="strengthsDetails" name="strengthsDetails" required rows="2" placeholder="صف مواهبك وصفاتك الإيجابية بكلماتك الخاصة"></textarea>
+        </div>
+
+        <div class="question-block" id="weaknessTraitsBlock">
+          <p class="question-text">ما نقاط ضعفك أو التحديات التي تواجهها؟ <span class="req">*</span> (يمكن اختيار أكثر من واحد)</p>
+          <div class="checkbox-group">
+            <label class="checkbox-card"><input type="checkbox" name="weaknessTraits" value="procrastination" /><span>التسويف وتأجيل الأمور</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="weaknessTraits" value="perfectionism" /><span>المثالية المفرطة</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="weaknessTraits" value="impatience" /><span>نفاد الصبر</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="weaknessTraits" value="self_doubt" /><span>الشك بالنفس</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="weaknessTraits" value="saying_no" /><span>صعوبة قول «لا»</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="weaknessTraits" value="fear_judgment" /><span>الخوف من حكم الآخرين</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="weaknessTraits" value="emotional_reactivity" /><span>التسرّع أو الحساسية العاطفية</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="weaknessTraits" value="disorganization" /><span>الفوضى وصعوبة التنظيم</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="weaknessTraits" value="avoidance" /><span>تجنّب المواجهة</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="weaknessTraits" value="people_pleasing" /><span>إرضاء الآخرين على حساب الذات</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="weaknessesDetails">صف نقاط ضعفك أو ما تريد تحسينه <span class="req">*</span></label>
+          <p class="field-hint">كن صريح/ة — هذا يساعدني على دعمك بشكل أفضل.</p>
+          <textarea id="weaknessesDetails" name="weaknessesDetails" required rows="2" placeholder="مثال: أؤجل المهم، أتأثر بسرعة بالنقد، أصعب عليّ وضع حدود..."></textarea>
+        </div>
+      </section>
+
+      <!-- Étape 7 : Blessures émotionnelles + final -->
+      <section class="step" data-step="7">
+        <div class="step-header">
+          <span class="step-icon">07</span>
+          <div>
+            <h2>جروحك العاطفية ورسالتك الأخيرة</h2>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <p class="question-text">عندما تشعر بالأذى، أي جرح يتفاعل غالباً؟ (يمكن اختيار أكثر من واحد)</p>
+          <div class="checkbox-group">
+            <label class="checkbox-card"><input type="checkbox" name="emotionalWounds" value="rejection" /><span><strong>جرح الرفض</strong> — «أنا لست كافياً/كافية»</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="emotionalWounds" value="abandonment" /><span><strong>جرح الهجر</strong> — «سيتخلى عني أحد ما»</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="emotionalWounds" value="humiliation" /><span><strong>جرح الذل</strong> — «أنا لست جديراً/جديرة»</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="emotionalWounds" value="betrayal" /><span><strong>جرح الخيانة</strong> — «لا يمكنني الوثوق بأحد»</span></label>
+            <label class="checkbox-card"><input type="checkbox" name="emotionalWounds" value="injustice" /><span><strong>جرح الظلم</strong> — «الحياة غير عادلة»</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="moodChange">كيف تغيّر مزاجك عندما تشعر بتوتر أو اضطراب؟ <span class="req">*</span></label>
+          <p class="field-hint">صف ما تفعله فعلياً — العادات، الأفعال، أو الأشخاص الذين يساعدونك.</p>
+          <textarea id="moodChange" name="moodChange" required rows="2" placeholder="مثال: المشي، الاستماع للموسيقى، التحدث مع صديق، العزلة، الرياضة..."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="selfRelief">كيف تُريح نفسك وتتنفّس عندما تثقل عليك الحياة؟ <span class="req">*</span></label>
+          <p class="field-hint">ما الذي يريحك حقاً — ليس ما «يجب» أن تفعله، بل ما تلجأ إليه فعلاً.</p>
+          <textarea id="selfRelief" name="selfRelief" required rows="2" placeholder="مثال: النوم، الصلاة/التأمل، مشاهدة شيء مريح، الكتابة، البكاء، الخروج في الطبيعة..."></textarea>
+        </div>
+
+        <div class="question-block">
+          <p class="question-text">كيف تتعامل عادة مع هذا الألم؟</p>
+          <div class="scale-group" data-name="painCoping">
+            <label class="scale-option"><input type="radio" name="painCoping" value="overachieve" required /><span class="scale-label">أعمل أكثر لأثبت قيمتي</span></label>
+            <label class="scale-option"><input type="radio" name="painCoping" value="isolate" /><span class="scale-label">أنسحب وأحمي نفسي</span></label>
+            <label class="scale-option"><input type="radio" name="painCoping" value="control_others" /><span class="scale-label">أحاول السيطرة على الآخرين أو الموقف</span></label>
+            <label class="scale-option"><input type="radio" name="painCoping" value="deny" /><span class="scale-label">أتجاهل المشاعر وأتظاهر أن كل شيء بخير</span></label>
+            <label class="scale-option"><input type="radio" name="painCoping" value="seek_help" /><span class="scale-label">أبحث عن الدعم أو المساعدة</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="innerVoice">ما الذي يقوله لك «الصوت الداخلي» عندما تفشل أو تخطئ؟</label>
+          <textarea id="innerVoice" name="innerVoice" rows="2" placeholder="مثال: «أنت دائماً تفشل»، «لا أحد يفهمك»..."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="messageToCoach">هل هناك شيء تريد أن أعرفه قبل جلستنا؟ <span class="req">*</span></label>
+          <textarea id="messageToCoach" name="messageToCoach" required rows="3" placeholder="أي معلومة، خوف، أو أمنية..."></textarea>
+        </div>
+
+        <div class="field consent">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="consent" name="consent" required />
+            <span>أوافق على استخدام هذه المعلومات لتحضير جلسة التدريب الخاصة بي، وأؤكد أن إجاباتي صادقة.</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Étape 8 : Réservation -->
+      <section class="step" data-step="8">
+        <div class="step-header">
+          <span class="step-icon">08</span>
+          <div>
+            <h2>احجز جلستك</h2>
+            <p>استعد لاكتشاف أسرار شخصيتك</p>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <p class="question-text">هل أنت مستعد/ة لحجز جلسة خاصة لتحليل أجوبتك واكتشاف أسرار شخصيتك؟ <span class="req">*</span></p>
+          <div class="scale-group" data-name="readyForSession">
+            <label class="scale-option"><input type="radio" name="readyForSession" value="yes" required /><span class="scale-label">نعم — سأرسل «تحليل شخصية» على إنستغرام</span></label>
+            <label class="scale-option"><input type="radio" name="readyForSession" value="no" /><span class="scale-label">لا، ليس الآن</span></label>
+          </div>
+        </div>
+
+        <div class="comfort-block">
+          <p class="comfort-lead">✦ رسالة قبل الإرسال</p>
+          <p>شكراً لك على صدقك وشجاعتك في ملء هذه الاستمارة. أؤكد لك أنني سأبذل <strong>قصارى جهدي</strong> لمساعدتك على الوصول إلى <strong>أفضل نسخة منك</strong> — بمحبة، باهتمام، وبدون أحكام.</p>
+          <p>أنت تستحق أن تُفهم، أن تُسمَع، وأن تتقدّم على وتيرتك. أراك قريباً.</p>
+        </div>
+
+        <div class="instagram-note">
+          <p>بعد الإرسال، تواصل معي على <strong>إنستغرام</strong> بعبارة <strong>«تحليل شخصية»</strong> وسأرد عليك لتحديد الموعد.</p>
+        </div>
+      </section>
+
+      <div class="form-nav">
+        <button type="button" class="btn btn-ghost" id="prevBtn" disabled>
+          <span aria-hidden="true">→</span> السابق
+        </button>
+        <button type="button" class="btn btn-primary" id="nextBtn">
+          التالي <span aria-hidden="true">←</span>
+        </button>
+        <button type="submit" class="btn btn-primary btn-submit hidden" id="submitBtn">
+          إرسال الاستمارة ✦
+        </button>
+      </div>
+
+      <div class="draft-actions">
+        <button type="button" class="btn btn-draft" id="saveDraftBtn">حفظ والمتابعة لاحقاً</button>
+        <span class="draft-status" id="draftStatus" aria-live="polite"></span>
+      </div>
+    </form>
+
+    <div class="draft-toast hidden" id="draftToast" role="status"></div>
+
+    <section class="success-screen hidden" id="successScreen">
+      <div class="success-icon">✦</div>
+      <h2>شكراً من القلب</h2>
+      <p class="success-intro">تم استلام استمارتك بنجاح. لقد أخذت للتوّ خطوة جميلة نحو نفسك — وأنا أقدّر شجاعتك.</p>
+
+      <div class="success-message">
+        <p>أعدك أن أبذل <strong>قصارى جهدي</strong> لمساعدتك على اكتشاف <strong>أفضل نسخة منك</strong>. ليس نسخة مثالية بلا عيوب، بل النسخة <em>الحقيقية</em> التي تنبض بالحياة وتليق بك.</p>
+        <p>أقدّم هذا العمل <strong>بمحبة واهتمام</strong>، لأنني أؤمن أن كل شخص يحمل قصة فريدة، ومواهب مخفية، وجروحاً يمكن أن تتحوّل إلى قوة.</p>
+      </div>
+
+      <ul class="success-values">
+        <li>أنت تستحق أن تُفهم بعمق، لا أن تُحكم عليك بسرعة</li>
+        <li>طلب المساعدة ليس ضعفاً — بل بداية القوة والنمو</li>
+        <li>جلستنا ستكون مساحة آمنة، سرّية، وخالية من الأحكام</li>
+        <li>أفضل نسخة منك تبدأ بالصدق — والصدق الذي أظهرته هنا يكفي لأن أبدأ معك بجدّية</li>
+      </ul>
+
+      <p class="success-closing">سأراجع إجاباتك بعناية فردية، وأتواصل معك قريباً. إلى ذلك الحين، كن لطيفاً مع نفسك — أنت تستحق ذلك.</p>
+      <p class="success-note">أرسل «تحليل شخصية» على إنستغرام لتأكيد حجز جلستك ✦</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> — جلسات تدريب شخصية</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
